@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-03-2025 a las 14:18:26
+-- Tiempo de generación: 24-03-2025 a las 19:35:56
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -40,8 +40,10 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `title`, `description`, `completed`, `createdAt`) VALUES
-(4, 'Codear', 'Hasta el infinito y más allá', 0, '2025-03-24'),
-(5, 'Lavar ropa', 'Antes de que llueva', 0, '2025-03-24');
+(4, 'Codear', 'Hasta el infinito y más allá', 1, '2025-03-24'),
+(6, 'Limpiar', 'Toda la casa', 1, '2025-03-24'),
+(7, 'Camina', 'A casita', 0, '2025-03-24'),
+(9, 'Enseñando', 'Artes oscuras', 0, '2025-03-24');
 
 --
 -- Índices para tablas volcadas
@@ -61,7 +63,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT de la tabla `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

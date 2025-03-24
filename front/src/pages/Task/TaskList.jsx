@@ -6,14 +6,14 @@ export default function TasksList() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:8081/')
+        axios.get('http://localhost:8081/api/tasks')
             .then(res => setData(res.data))
             .catch(err => console.log(err));
     }, []);
 
+
     return (
         <>
-            <h2>Tasks</h2>
             {data.length ? (
                 data.map((task, index) => (
                     <TaskCard key={index} task={task} />

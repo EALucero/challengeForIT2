@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
+import { Col } from "react-bootstrap";
 
 function TaskEdit() {
   const { id } = useParams();
@@ -8,7 +9,7 @@ function TaskEdit() {
   const [state, setState] = useState(0);
 
   useEffect(() => {
-    axios.get(`http://localhost:8081/read/${id}`)
+    axios.get(`http://localhost:8081/api/tasks/${id}`)
       .then(res => {
         console.log(res)
         setValues({
@@ -37,38 +38,34 @@ function TaskEdit() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    axios.put(`http://localhost:8081/update/${id}`, values)
+    axios.put(`http://localhost:8081/api/tasks/edit/${id}`, values)
       .then(res => {
         console.log(res)
-        navigate('/')
+        navigate('/api/tasks')
       })
       .catch(err => console.log(err));
-  }  
+  }
 
   return (
-    <div className='d-flex vh-100 bg-primary justify-content-center align-items-center'>
-      <div className='w-50 bg-white rounded p-3'>
-        <form onSubmit={handleSubmit}>
-          <h2>Add Task</h2>
-          <div className='mb-2'>
-            <label htmlFor="">Title</label>
-            <input type="text" placeholder='Enter title' className='form-control' value={values.title}
-              onChange={e => setValues({ ...values, title: e.target.value })} />
-          </div>
-          <div className='mb-2'>
-            <label htmlFor="">Description</label>
-            <input type="text" placeholder='Enter description' className='form-control' value={values.description}
-              onChange={e => setValues({ ...values, description: e.target.value })} />
-          </div>
-          <div className='mb-2'>
-          <label htmlFor=""></label>
-          <button onClick={handleClick} className={'btn btn-sm ' + (state > 0 ? 'btn-success' : 'btn-danger')}>{state > 0 ? 'Completed' : 'Pending'}</button>
-        </div>
-          <Link to="/" className='btn btn-primary me-2'>Back</Link>
-          <button className='btn btn-success'>Update</button>
-        </form>
-      </div>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <h2 className='mb-5'>Edit Task</h2>
+      <Col md={6} className='mb-2 lg:flex justify-between'>
+        <label htmlFor="">Title</label>
+        <input type="text" placeholder='Enter title' className='form-control text-black' value={values.title}
+          onChange={e => setValues({ ...values, title: e.target.value })} />
+      </Col>
+      <Col md={6} className='mb-2 lg:flex justify-between'>
+        <label htmlFor="">Description</label>
+        <input type="text" placeholder='Enter description' className='form-control text-black' value={values.description}
+          onChange={e => setValues({ ...values, description: e.target.value })} />
+      </Col>
+      <Col md={6} className='mb-2 lg:flex justify-between'>
+        <label htmlFor="">Completed</label>
+        <button onClick={handleClick} className={'btn-' + (state > 0 ? 'green-300' : 'red-300')}>{state > 0 ? 'Completed' : 'Pending'}</button>
+      </Col>
+      <Link to={`/api/tasks/${id}`} className='bg-blue-600 rounded px-2 me-2'>Back</Link>
+      <button className='bg-green-600 rounded p-0'>Update</button>
+    </form>
   )
 }
 

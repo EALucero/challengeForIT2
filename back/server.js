@@ -36,7 +36,7 @@ app.post('/api/tasks', (req, res) => {
     });
 })
 
-app.get('/:id', (req, res) => {
+app.get('/api/tasks/:id', (req, res) => {
     const sql = 'SELECT * FROM tasks WHERE id = ?';
     const id = req.params.id;
 
@@ -48,7 +48,7 @@ app.get('/:id', (req, res) => {
     });
 });
 
-app.put('/:id', (req, res) => {
+app.put('/api/tasks/:id/edit', (req, res) => {
     const sql = 'UPDATE tasks SET `title`=?, `description`=?, `completed`=? WHERE id=?';
     const id = req.params.id;
 
@@ -58,7 +58,7 @@ app.put('/:id', (req, res) => {
     });
 })
 
-app.delete('/:id', (req, res) => {
+app.delete('/api/tasks/:id/delete', (req, res) => {
     const sql = 'DELETE FROM tasks WHERE id = ?';
     const id = req.params.id;
 

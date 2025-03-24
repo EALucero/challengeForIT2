@@ -1,6 +1,6 @@
 const taskSchema = new []({
     id: {
-        type: String,
+        type: Number,
         required: true,
         unique: true,
     },
